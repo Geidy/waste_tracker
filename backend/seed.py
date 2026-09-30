@@ -1,4 +1,4 @@
-"""Seed the SQLite database with deterministic demo data."""
+"""Seed the SQLite database with deterministic demo data 30 days of Demo records."""
 from __future__ import annotations
 
 import random
