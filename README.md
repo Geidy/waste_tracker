@@ -1,4 +1,5 @@
 Waste Intelligence — Food Waste Reduction Tracker (Prototype)
+
 A layered prototype for the Global Sound Waves Innovation Challenge food-waste
 reduction proposal. Tracks kitchen/buffet waste by outlet, shift, and category;
 estimates cost and CO2e; computes waste-per-cover and waste-as-%-of-spend against
@@ -55,6 +56,7 @@ Waste per cover (g)	waste_entry + daily_kpi.covers
 Waste as % of food spend	waste_entry + daily_kpi.food_spend
 Diversion rate	diversion_entry / waste_entry
 Estimated CO2e	landfilled kg × 1.0 + diverted kg × 0.05 (EPA WARM-derived)
+
 Production notes
 Move to PostgreSQL: run db/schema.sql, point waste_tracker.get_conn() at the
 Postgres connection, and switch the SQLite-specific ON CONFLICT upsert in
