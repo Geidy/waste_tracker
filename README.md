@@ -70,3 +70,17 @@ channels using EPA WARM.
 
 Keep this a measurement/visibility tool — pair the data with F&B behavior
 changes (production planning, portioning) for actual reduction.
+
+## Deploy the dashboard
+
+GitHub stores the source code, but GitHub Pages cannot run a Python/Streamlit
+app. To publish a live dashboard, deploy it with Streamlit Community Cloud:
+
+1. Sign in at https://share.streamlit.io with GitHub.
+2. Create an app from `Geidy/waste_tracker`, branch `main`.
+3. Set the app file path to `frontend/app.py` and deploy.
+4. Share the Streamlit app URL once deployment finishes.
+
+This repository is private, so Streamlit must have access to it. The app creates
+and seeds a local SQLite database at startup; that local database is suitable
+for a demo, not persistent production data.
