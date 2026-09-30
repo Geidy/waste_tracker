@@ -1,0 +1,53 @@
+Waste Intelligence — Food Waste Reduction Tracker (Prototype)
+A layered prototype for the Global Sound Waves Innovation Challenge food-waste
+reduction proposal. Tracks kitchen/buffet waste by outlet, shift, and category;
+estimates cost and CO2e; computes waste-per-cover and waste-as-%-of-spend against
+industry benchmarks.
+
+Project structure (layered)
+text
+waste_tracker/
+├── db/
+│   ├── schema.sql          # production PostgreSQL DDL (tables + analytics views)
+│   └── schema_sqlite.sql   # SQLite-flavored schema for the prototype
+├── backend/
+│   ├── waste_tracker.py    # data-access layer (all SQL lives here)
+│   └── seed.py             # seeds realistic demo data (3 outlets, ~30 days)
+├── frontend/
+│   └── app.py              # Streamlit dashboard (imports backend only)
+├── requirements.txt
+└── README.md
+
+Separation of concerns: the frontend never writes SQL — it calls
+backend/waste_tracker.py, which owns all queries and the DB connection. This
+makes the code reviewable, testable, and trivial to port from SQLite to
+PostgreSQL (one connection-string change).
+
+# Waste Intelligence — Food Waste Reduction Tracker
+# Prototype dependencies. SQLite is built into Python's standard library
+# (no extra package needed for the pilot DB).
+
+streamlit>=1.30
+pandas>=2.0
+
+# Optional: only needed to regenerate the one-page PDF submission
+# (generate_submission_pdf.py). Remove if you don't need PDF export.
+reportlab>=4.0
+
+cd waste_tracker
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+Run it
+bash
+
+
+cd waste_tracker
+pip install -r requirements.txt
+streamlit run frontend/app.py
+
+On first launch the app auto-creates the SQLite DB and seeds it with demo data
+(3 outlets, ~30 days of entries, daily covers/spend, and diversion). Change the
+date range and outlet filters at the top.
+
